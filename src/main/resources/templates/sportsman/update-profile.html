@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменить профиль спортсмена</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/sportsman/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Изменение профиля спортсмена</h1>
+
+</header>
+
+<main>
+    <form class="container" th:action="@{/electron/coach/update}" th:object="${user}" method="post">
+        <input type="hidden" name="_method" value="put"/>
+
+        <label for="name">Имя:</label>
+        <input id="name" type="text" th:field="*{name}" />
+        <div th:if="${#fields.hasErrors('name')}" class="error">
+            <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+        </div>
+
+        <!-- Возраст -->
+        <label for="age">Возраст:</label>
+        <input id="age" type="number" th:field="*{age}" />
+        <div th:if="${#fields.hasErrors('age')}" class="error">
+            <p th:each="err : ${#fields.errors('age')}" th:text="${err}"></p>
+        </div>
+
+        <!-- Телефон -->
+        <label for="phone">Телефон:</label>
+        <input id="phone" type="text" th:field="*{phone}" />
+        <div th:if="${#fields.hasErrors('phone')}" class="error">
+            <p th:each="err : ${#fields.errors('phone')}" th:text="${err}"></p>
+        </div>
+
+        <!-- Адрес -->
+        <label for="address">Адрес проживания:</label>
+        <input id="address" type="text" th:field="*{address}" />
+        <div th:if="${#fields.hasErrors('address')}" class="error">
+            <p th:each="err : ${#fields.errors('address')}" th:text="${err}"></p>
+        </div>
+
+        <!-- Звание -->
+        <label for="rank">Звание тренера:</label>
+        <input id="rank" type="text" th:field="*{rank}" />
+        <div th:if="${#fields.hasErrors('rank')}" class="error">
+            <p th:each="err : ${#fields.errors('rank')}" th:text="${err}"></p>
+        </div>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>

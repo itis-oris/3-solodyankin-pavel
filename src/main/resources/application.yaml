@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: 3-solodyankin-pavel
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+  spring:
+    web:
+      mvc:
+        throw-exception-if-no-handler-found: true
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+logging:
+  level:
+    root: INFO
+    ru.kpfu.itis: DEBUG

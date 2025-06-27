@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавление группы</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/coach/groups'">Назад</button>
+        <button onclick="location.href='/electron/coach/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Добавление группы</h1>
+</header>
+
+<main class="container">
+    <section>
+        <form  th:action="@{/electron/coach/groups/add}" method="post">
+            <div class="form-group">
+                <label for="groupName">Название группы:</label>
+                <input type="text" id="groupName" name="groupName" placeholder="Введите название группы" required />
+            </div>
+            <div class="form-group" th:if="${#lists.isEmpty(athletes)}">
+                <p>Нет доступных спортсменов для добавления в группу.</p>
+            </div>
+
+            <div class="form-group">
+                <label th:if="${not #lists.isEmpty(athletes)}">Спортсмены:</label>
+                <div class="checkbox-group">
+                    <div th:each="athlete : ${athletes}">
+                        <label>
+                            <input type="checkbox" name="athleteIds" th:value="${athlete.id}" />
+                            <span th:text="${athlete.name}">Имя спортсмена</span>
+                        </label><br/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Создать группу</button>
+            </div>
+        </form>
+    </section>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

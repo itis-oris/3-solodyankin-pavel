@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка 405</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body class="error-page error-405">
+    <h1>Ошибка 405 - Метод не поддерживается</h1>
+    <p>Данный метод не поддерживается</p>
+    <a th:href="${referer}">Вернуться назад</a>
+</body>
+</html>

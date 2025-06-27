@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Группы спортсменов</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/coach/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Группы спортсменов</h1>
+</header>
+
+<main class="container">
+    <div th:if="${#lists.isEmpty(groups)}">
+        <p class="empty-message">Не найдено групп у тренера.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(groups)}">
+        <table class="groups-table">
+            <thead>
+            <tr>
+                <th>Название группы</th>
+                <th>Спортсмены</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.groupName}">Название группы</td>
+                <td>
+                    <ul>
+                        <li th:each="sportsman : ${group.sportsmen}">
+                            <span th:text="${sportsman.name}">Имя</span>,
+                            звание - <span th:text="${sportsman.rank}">КМС</span>
+                            <form th:action="@{/electron/coach/groups/delete-sportsman}" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <input type="hidden" name="groupId" th:value="${group.id}">
+                                <input type="hidden" name="sportsmanId" th:value="${sportsman.id}">
+                                <button type="submit">Удалить спортсмена</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                    <form th:action="@{/electron/coach/groups/add-sportsman}" method="get">
+                        <input type="hidden" name="groupId" th:value="${group.id}">
+                        <input type="hidden" name="groupName" th:value="${group.groupName}">
+                        <button class="add-button">Добавить спортсменов</button>
+                    </form>
+
+                    <form th:action="@{/electron/coach/groups}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <input type="hidden" name="groupId" th:value="${group.id}">
+                        <button type="submit" class="delete-btn">Удалить группу</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="add-group-container">
+        <form th:action="@{/electron/coach/groups/add}" method="get">
+            <button type="submit" class="add-group-btn">Добавить группу</button>
+        </form>
+    </div>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>

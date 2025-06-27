@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Группы спортсменов</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/sportsman/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Группы спортсменов</h1>
+</header>
+
+<main class="container">
+    <div th:if="${#lists.isEmpty(groups)}">
+        <p class="empty-message">Не найдено групп у спортсмена.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(groups)}">
+        <table class="groups-table">
+            <thead>
+            <tr>
+                <th>Тренер</th>
+                <th>Название группы</th>
+                <th>Спортсмены</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.coach.name + ' (' + group.coach.sport.name + ')'}">Имя тренера</td>
+                <td th:text="${group.groupName}">Название</td>
+                <td>
+                    <ul>
+                        <li th:each="sportsman : ${group.sportsmen}">
+                            <span th:text="${sportsman.name}">Имя</span>,
+                            <span th:text="${sportsman.rank}"></span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+
+</html>

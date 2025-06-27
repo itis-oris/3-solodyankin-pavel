@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка 500</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body class="error-page error-500">
+    <h1>Ошибка 500 - Что-то пошло не так</h1>
+    <p>Внутренняя ошибка сервера</p>
+    <a th:href="${referer}">Вернуться назад</a>
+</body>
+</html>

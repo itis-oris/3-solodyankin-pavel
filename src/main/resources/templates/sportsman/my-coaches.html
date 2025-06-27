@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о спортсмене</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/sportsman/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Список ваших тренеров</h1>
+
+</header>
+
+<main>
+    <section class="section container">
+        <h2>Уже добавленные тренеры</h2>
+        <div th:if="${coaches == null or #lists.isEmpty(coaches)}">
+            <p>Тренеры отсутствуют.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(coaches)}">
+            <form th:action="@{/electron/sportsman/coaches}" method="post" onsubmit="return validateCheckboxSelection('coachIds');">
+                <input type="hidden" name="_method" value="delete"/>
+                <input type="hidden" name="sportsmanId" th:value="${user.id}" />
+                <ul>
+                    <li th:each="coach : ${coaches}">
+                        <span th:text="${coach.name + ' (' + (coach.sport?.name ?: 'Спорт не указан') + ')'}"></span>
+                        <input type="checkbox" name="coachIds" th:value="${coach.id}" />
+                    </li>
+                </ul>
+                <div class="actions">
+                    <button type="submit">Удалить выбранных</button>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <button type="button" onclick="toggleAddCoachForm()">Добавить тренера</button>
+        </div>
+    </section>
+
+    <section id="addCoachForm" class="section container" style="display:none;">
+        <h2>Добавление тренера</h2>
+        <div th:if="${#lists.isEmpty(availableCoaches)}">
+            <p>Нет доступных тренеров для добавления.</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(availableCoaches)}">
+            <form th:action="@{/electron/sportsman/coaches}" method="post">
+                <input type="hidden" name="sportsmanId" th:value="${user.id}" />
+                <label for="coach">Выберите тренера:</label>
+                <select name="coachIds" id="coach" multiple>
+                    <option th:each="coach : ${availableCoaches}"
+                            th:value="${coach.id}"
+                            th:text="${coach.name + ' (' + (coach.sport?.name ?: 'Спорт не указан') + ')'}">
+                    </option>
+                </select>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </section>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+
+<script th:src="@{/js/coach.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>

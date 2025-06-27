@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Добавление спортсмена в группу</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/coach/groups'">Назад</button>
+        <button onclick="location.href='/electron/coach/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Добавление спортсмена</h1>
+
+
+</header>
+
+<main class="container">
+    <section>
+        <div class="form-group" th:if="${#lists.isEmpty(athletes)}">
+            <p>Нет доступных спортсменов для добавления в группу.</p>
+        </div>
+        <form th:action="@{/electron/coach/groups/add-sportsman}" method="post"
+              th:if="${not #lists.isEmpty(athletes)}" onsubmit="return validateCheckboxSelection('athleteIds');">
+            <div class="form-group">
+                <label>Спортсмены:</label>
+                <div class="checkbox-group">
+                    <div class="athletes-list" th:each="athlete : ${athletes}">
+                        <label>
+                            <input type="checkbox" name="athleteIds" th:value="${athlete.id}" />
+                            <span th:text="${athlete.name}">Имя спортсмена</span>
+                        </label><br />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="groupId" th:value="${group.id}" />
+                <button type="submit">Добавить спортсменов</button>
+            </div>
+        </form>
+    </section>
+</main>
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/coach.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>

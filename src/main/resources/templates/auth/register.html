@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <button onclick="location.href='/electron/home'">На главную</button>
+    <h1>Регистрация</h1>
+</header>
+
+
+<form th:action="@{/electron/auth/register}" th:object="${userRequest}" method="post">
+    <!-- Email -->
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required/><br/>
+    <div th:if="${#fields.hasErrors('email')}" class="error">
+        <p th:each="err : ${#fields.errors('email')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Пароль -->
+    <label>Пароль:</label>
+    <input type="password" th:field="*{password}" required/><br/>
+    <div th:if="${#fields.hasErrors('password')}" class="error">
+        <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Имя -->
+    <label>Имя:</label>
+    <input type="text" th:field="*{name}" required/><br/>
+    <div th:if="${#fields.hasErrors('name')}" class="error">
+        <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Пол -->
+    <label>Пол:</label>
+    <select th:field="*{gender}">
+        <option value="M">Мужской</option>
+        <option value="F">Женский</option>
+    </select>
+    <div th:if="${#fields.hasErrors('gender')}" class="error">
+        <p th:each="err : ${#fields.errors('gender')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Возраст -->
+    <label>Возраст:</label>
+    <input type="number" th:field="*{age}" min="0" required/><br/>
+    <div th:if="${#fields.hasErrors('age')}" class="error">
+        <p th:each="err : ${#fields.errors('age')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Телефон -->
+    <label>Телефон:</label>
+    <input type="text" th:field="*{phone}" required/><br/>
+    <div th:if="${#fields.hasErrors('phone')}" class="error">
+        <p th:each="err : ${#fields.errors('phone')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Адрес -->
+    <label>Адрес проживания:</label>
+    <input type="text" th:field="*{address}" required/><br/>
+    <div th:if="${#fields.hasErrors('address')}" class="error">
+        <p th:each="err : ${#fields.errors('address')}" th:text="${err}"></p>
+    </div>
+
+    <!-- Роль -->
+    <label>Роль:</label>
+    <select th:field="*{role}">
+        <option th:each="r : ${T(ru.kpfu.itis.dto.Role).values()}"
+                th:value="${r.name()}"
+                th:text="${r.displayName}">
+        </option>
+    </select>
+    <div th:if="${#fields.hasErrors('role')}" class="error">
+        <p th:each="err : ${#fields.errors('role')}" th:text="${err}"></p>
+    </div>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<button onclick="location.href='/electron/auth/login'">Уже есть аккаунт? Войти</button>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+</body>
+</html>

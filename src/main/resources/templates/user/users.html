@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <button onclick="location.href='/electron/home'">Назад</button>
+    <h1>Пользователи системы</h1>
+</header>
+
+<main class="container">
+    <div>
+        <button onclick="getAllCoaches()">Показать наших тренеров</button>
+        <button onclick="getAllSportsmen()">Показать наших спортсменов</button>
+    </div>
+
+    <div id="results"></div>
+</main>
+
+<script th:src="@{/js/user.js}"></script>
+</body>
+</html>

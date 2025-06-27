@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка 401</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="error-page error-401">
+    <h1>Ошибка 401 - Вы не авторизованы</h1>
+    <p>Для доступа к ресурсу требуется авторизация</p>
+    <a th:href="${referer}">Вернуться назад</a>
+</body>
+</html>

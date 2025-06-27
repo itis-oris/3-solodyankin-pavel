@@ -1,0 +1,682 @@
+/* styles.css - Основные стили для проекта */
+
+/* Общие стили */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --error-color: #e74c3c;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: var(--box-shadow);
+}
+
+header h1 {
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+}
+
+/* Навигация */
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Основное содержимое */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container {
+    padding: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+/* Формы */
+form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.checkbox-group {
+    margin: 1rem 0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+    width: auto;
+}
+
+/* Кнопки */
+button,
+input[type="submit"],
+input[type="button"] {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    outline: none; /* Добавьте эту строку */
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    margin-right: 1rem;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5); /* Альтернатива для доступности */
+}
+
+.delete-btn {
+    background-color: var(--error-color);
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.add-button,
+.add-group-btn {
+    background-color: var(--success-color);
+}
+
+.add-button:hover,
+.add-group-btn:hover {
+    background-color: #219955;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    box-shadow: var(--box-shadow);
+    background: white;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Списки */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Сообщения */
+.error {
+    color: var(--error-color);
+    padding: 1rem;
+    background-color: #fdecea;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.success {
+    color: var(--success-color);
+    padding: 1rem;
+    background-color: #e8f5e9;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Подвал */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Добавьте это в ваш styles.css файл */
+
+/* Стили для страниц ошибок */
+.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+.error-page h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.error-page p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.error-page a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.error-page a:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Цвета для разных ошибок */
+.error-400 h1 { color: #e67e22; } /* оранжевый для 400 */
+.error-401 h1 { color: #f1c40f; } /* желтый для 401 */
+.error-403 h1 { color: #d35400; } /* темно-оранжевый для 403 */
+.error-404 h1 { color: #e74c3c; } /* красный для 404 */
+.error-405 h1 { color: #9b59b6; } /* фиолетовый для 405 */
+.error-500 h1 { color: #c0392b; } /* темно-красный для 500 */
+
+
+/* Стили для users.html */
+/* Стили для страницы users.html и результатов запросов */
+#results {
+    margin-top: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+#results h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+#results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#results li {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--secondary-color);
+    transition: var(--transition);
+}
+
+#results li:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+#results p.empty-message {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Стили для кнопок */
+#results ~ button {
+    margin-top: 1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    #results li {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Стили для my-coaches.html */
+#addCoachForm {
+    margin-top: 2rem;
+}
+
+.actions {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+select[multiple] {
+    height: auto;
+    min-height: 100px;
+}
+
+/* Стили для таблиц в groups-sportsman.html и training-sportsman.html */
+.groups-table {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.groups-table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem;
+}
+
+.groups-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.groups-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.groups-table ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.groups-table li {
+    padding: 0.25rem 0;
+    border-bottom: none;
+}
+
+/* Адаптивные стили */
+@media (min-width: 768px) {
+    .slide {
+        min-width: 45%;
+    }
+
+    #coaches, #athletes {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .card {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slide {
+        min-width: 30%;
+    }
+}
+/* Добавляем в конец вашего существующего styles.css */
+
+/* Карусель на всю ширину */
+.fullscreen-carousel {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 2rem 0;
+    background: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.fullscreen-carousel h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    flex: 0 0 100vw;
+    scroll-snap-align: start;
+    position: relative;
+    text-align: center;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 600px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Сетка из 3 колонок */
+.three-column-section {
+    margin: 3rem auto;
+    max-width: 1200px;
+}
+
+.three-column-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.three-column-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+/* Карточки персоналий */
+.person-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.person-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.person-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.card-content p {
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .three-column-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .carousel-slide img {
+        height: 50vh;
+    }
+
+    .slide-caption {
+        font-size: 1.5rem;
+        bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .three-column-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-slide img {
+        height: 40vh;
+        min-height: 300px;
+    }
+
+    .slide-caption {
+        font-size: 1.2rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img {
+        height: 35vh;
+    }
+
+    .slide-caption {
+        font-size: 1rem;
+        padding: 0.5rem;
+        bottom: 1rem;
+    }
+}
+/* Добавьте в конец вашего CSS файла */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 20px;
+}
+
+.carousel-btn.next {
+    right: 20px;
+}
+
+/* Анимация для слайдов */
+.carousel-slide {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: relative;
+}
+
+/* Адаптивность для кнопок */
+@media (max-width: 768px) {
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
+}

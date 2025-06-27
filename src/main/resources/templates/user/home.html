@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спортивный комплекс "Электрон"</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div sec:authorize="isAnonymous()">
+        <button onclick="location.href='/electron/auth/login'">Войти в аккаунт</button>
+        <button onclick="location.href='/electron/auth/register'">Зарегистрироваться</button>
+        <button onclick="location.href='/electron/user'">Пользователи</button>
+    </div>
+    <div th:if="${#authorization.expression('hasAuthority(''SPORTSMAN'')')}">
+        <button onclick="location.href='/electron/sportsman/home'">Личный кабинет</button>
+        <button onclick="location.href='/electron/user'">Пользователи</button>
+    </div>
+    <div th:if="${#authorization.expression('hasAuthority(''COACH'')')}">
+        <button onclick="location.href='/electron/coach/home'">Личный кабинет</button>
+        <button onclick="location.href='/electron/user'">Пользователи</button>
+    </div>
+    <h1>Спортивный комплекс "Электрон"</h1>
+
+</header>
+
+<main>
+    <!-- Карусель на всю ширину -->
+    <section class="fullscreen-carousel">
+        <h2>Фотографии спортивной школы</h2>
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/football.jpeg}" alt="Футбольный зал">
+                <div class="slide-caption">Футбольный зал</div>
+            </div>
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/acrobatic.jpeg}" alt="Зал акробатики">
+                <div class="slide-caption">Зал акробатики</div>
+            </div>
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/basketball.jpeg}" alt="Баскетбольный зал">
+                <div class="slide-caption">Баскетбольный зал</div>
+            </div>
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/dzudo.jpeg}" alt="Зал дзюдо">
+                <div class="slide-caption">Зал дзюдо</div>
+            </div>
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/tableTennis.jpg}" alt="Зал настольного тенниса">
+                <div class="slide-caption">Зал настольного тенниса</div>
+            </div>
+            <div class="carousel-slide">
+                <img loading="lazy" th:src="@{/images/cafeteria.jpeg}" alt="Буфет">
+                <div class="slide-caption">Буфет для спортсменов</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тренеры в 3 колонки -->
+    <section class="three-column-section container">
+        <h2>Наши тренеры</h2>
+        <div class="three-column-grid">
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Elmira.jpg}" alt="Эльмира Назмединова">
+                <div class="card-content">
+                    <h3>Эльмира Назмединова</h3>
+                    <p>Старший тренер по акробатике. Опыт работы более 25 лет. Подготовила более 10 мастеров спорта России</p>
+                </div>
+            </div>
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Sergey.jpg}" alt="Сергей Кожин">
+                <div class="card-content">
+                    <h3>Сергей Кожин</h3>
+                    <p>Тренер по акробатике. Подготовил более 3 мастеров спорта</p>
+                </div>
+            </div>
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Lubov.jpg}" alt="Любовь Лебедева">
+                <div class="card-content">
+                    <h3>Любовь Лебедева</h3>
+                    <p>Тренер по акробатике, подготовила множество способных маленьких ребят</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Спортсмены в 3 колонки -->
+    <section class="three-column-section container">
+        <h2>Именитые спортсмены</h2>
+        <div class="three-column-grid">
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Lena.jpg}" alt="Елена Нейман">
+                <div class="card-content">
+                    <h3>Елена Нейман</h3>
+                    <p>Мастер спорта России, многократная чемпионка России, серебряный призёр Чемпионата Европы</p>
+                </div>
+            </div>
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Pavel.jpg}" alt="Павел Солодянкин">
+                <div class="card-content">
+                    <h3>Павел Солодянкин</h3>
+                    <p>Мастер спорта России по прыжкам на АКД</p>
+                </div>
+            </div>
+            <div class="person-card">
+                <img loading="lazy" th:src="@{/images/Egor.jpg}" alt="Егор Селезнёв">
+                <div class="card-content">
+                    <h3>Егор Селезнёв</h3>
+                    <p>Мастер спорта России, многократный финалист первенств мира, многократный чемпион России</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+
+<script th:src="@{/js/carousel.js}"></script>
+</body>
+</html>

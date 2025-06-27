@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coach Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/home'">На главную</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Добро пожаловать, <span th:text="${user.name}"></span>!</h1>
+</header>
+
+<main>
+    <section class="container">
+        <h2>Ваш профиль</h2>
+        <ul>
+            <li><strong>Имя:</strong> <span th:text="${user.name}"></span></li>
+            <li><strong>Возраст:</strong> <span th:text="${user.age}"></span></li>
+            <li><strong>Телефон:</strong> <span th:text="${user.phone}"></span></li>
+            <li><strong>Адрес:</strong> <span th:text="${user.address}"></span></li>
+            <li><strong>Ранг:</strong> <span th:text="${user.rank}"></span></li>
+            <li><strong>Спорт:</strong> <span th:text="${sport?.name} ?: 'Спорт не выбран'"></span></li>
+        </ul>
+        <div class="buttons">
+            <button onclick="location.href='/electron/coach/update'">Изменить данные</button>
+            <button onclick="location.href='/electron/coach/groups'">Посмотреть мои группы</button>
+            <button onclick="location.href='/electron/coach/trainings'">Посмотреть все тренировки</button>
+        </div>
+    </section>
+</main>
+
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>

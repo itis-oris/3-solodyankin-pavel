@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body class="error-page" th:classappend="'error-' + ${status}">
+    <h1>Произошла ошибка</h1>
+    <p th:text="'Код ошибки: ' + ${status}"></p>
+    <p th:text="${message}"></p>
+    <a th:href="${referer}">Вернуться назад</a>
+</body>
+</html>

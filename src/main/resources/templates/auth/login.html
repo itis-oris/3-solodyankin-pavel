@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Вход</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <button onclick="location.href='/electron/home'">На главную</button>
+    <h1>Вход в систему</h1>
+</header>
+
+<form th:action="@{/electron/auth/login}" th:object="${authRequest}" method="post">
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required/><br/>
+
+    <label>Пароль:</label>
+    <input type="password" th:field="*{password}" required/><br/>
+
+    <button type="submit">Войти</button>
+</form>
+
+<button onclick="location.href='/electron/auth/register'">Зарегистрироваться</button>
+
+<!-- Кнопка для показа формы сброса пароля -->
+<button type="button" onclick="toggleResetForm()">Забыли пароль?</button>
+
+<!-- Скрытая форма запроса сброса пароля -->
+<form id="password-reset-form" th:action="@{/electron/auth/password-reset/request}" method="post" th:object="${requestResetRequest}" style="display:none; margin-top:10px;">
+    <label>Введите Email для сброса пароля:</label>
+    <input type="email" name="email" th:field="*{email}" required />
+    <button type="submit">Отправить код</button>
+</form>
+
+<div th:if="${param.error}" class="error" style="color:red;">Неверный логин или пароль</div>
+<div th:if="${param.success}" style="color:green;">Вы зарегистрировались!</div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

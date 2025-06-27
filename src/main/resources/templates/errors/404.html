@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка 404</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body class="error-page error-404">
+    <h1>Ошибка 404 - Страница не найдена</h1>
+    <p>Запрошенная вами страница не существует</p>
+    <a th:href="${referer}">Вернуться назад</a>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Тренировки тренера</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <div>
+        <button onclick="location.href='/electron/coach/home'">На домашнюю</button>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <h1>Тренировки тренера</h1>
+</header>
+
+<main class="container">
+    <div th:if="${#lists.isEmpty(groups)}">
+        <p>Не найдено тренировок у тренера.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(groups)}">
+        <table class="groups-table">
+            <thead>
+            <tr>
+                <th>Группа</th>
+                <th>Тренировки</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.groupSportsman.groupName}">Название группы</td>
+                <td>
+                    <ul>
+                        <li th:each="training : ${group.trainings}">
+                            День недели - <span th:text="${training.dayOfWeek}">Понедельник</span>,
+                            время - <span th:text="${training.time}">10:00</span>
+                            <form th:action="@{/electron/coach/trainings}" method="post" style="display:inline;">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <input type="hidden" name="groupId" th:value="${group.groupSportsman.id}">
+                                <input type="hidden" name="trainingId" th:value="${training.id}">
+                                <button type="submit">Удалить</button>
+                            </form>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="add-group-container">
+        <form th:action="@{/electron/coach/trainings/add}" method="get">
+            <button type="submit" class="add-group-btn">Добавить тренировку</button>
+        </form>
+    </div>
+</main>
+
+<div th:if="${error}" th:text="${error}" style="color:red;"></div>
+<div th:if="${success}" th:text="${success}" style="color:green;"></div>
+<footer>
+    <p>&copy; 2025 Спортивный комплекс "Электрон". Все права защищены.</p>
+</footer>
+<script th:src="@{/js/login.js}"></script>
+
+</body>
+</html>
